@@ -1,0 +1,72 @@
+Human Directory Access Protocol (HDAP) that leverages AI and can be implemented using Object-Oriented Programming (OOP).
+
+Concept Overview
+
+Human Directory Access Protocol (HDAP) is a protocol designed to manage and access a directory of human resources, skills, and expertise. It uses AI to match requests with the most suitable human resources based on various criteria such as skills, availability, and past performance.
+
+Key Features
+    a) AI Matching Engine: Uses machine learning algorithms to match requests with the best-suited human resources.
+    b) Skill Database: A comprehensive database that stores information about individuals’ skills, experience, and availability.
+    c) Performance Tracking: Tracks the performance of individuals to improve future matching accuracy.
+    d) User Interface: A user-friendly interface for both requesters and providers to interact with the system.
+
+
+--------------------------------------------------------------------------------------------
+
+OOP Design
+
+class HumanResource:
+    def __init__(self, name, skills, availability):
+        self.name = name
+        self.skills = skills
+        self.availability = availability
+        self.performance = []
+
+    def add_performance(self, rating):
+        self.performance.append(rating)
+
+    def average_performance(self):
+        return sum(self.performance) / len(self.performance) if self.performance else 0
+
+class Request:
+    def __init__(self, required_skills, urgency):
+        self.required_skills = required_skills
+        self.urgency = urgency
+
+class HDAP:
+    def __init__(self):
+        self.human_resources = []
+
+    def add_human_resource(self, human_resource):
+        self.human_resources.append(human_resource)
+
+    def match_request(self, request):
+        suitable_resources = [hr for hr in self.human_resources if all(skill in hr.skills for skill in request.required_skills) and hr.availability]
+        suitable_resources.sort(key=lambda hr: hr.average_performance(), reverse=True)
+        return suitable_resources[0] if suitable_resources else None
+
+--------------------------------------------------------------------------------------------
+
+# Example usage
+hr1 = HumanResource("Alice", ["Python", "Data Analysis"], True)
+hr2 = HumanResource("Bob", ["Java", "System Design"], True)
+hr1.add_performance(4.5)
+hr1.add_performance(4.7)
+hr2.add_performance(4.0)
+
+hdap = HDAP()
+hdap.add_human_resource(hr1)
+hdap.add_human_resource(hr2)
+
+request = Request(["Python"], "High")
+matched_hr = hdap.match_request(request)
+if matched_hr:
+    print(f"Matched Human Resource: {matched_hr.name}")
+else:
+    print("No suitable human resource found.")
+
+--------------------------------------------------------------------------------------------
+Explanation
+  - HumanResource Class: Represents an individual with specific skills and availability.
+  - Request Class: Represents a request with required skills and urgency.
+  - HDAP Class: Manages human resources and matches requests with suitable resources.
