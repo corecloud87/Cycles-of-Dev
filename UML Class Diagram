@@ -27,7 +27,9 @@ UML class diagram for the Human Directory Access Protocol (HDAP) system:
 | + add_human_resource(human_resource: HumanResource): void |
 | + match_request(request: Request): HumanResource          |
 +------------------+
+
+
 Explanation
-HumanResource Class: Represents an individual with attributes like name, skills, availability, and performance. It includes methods to add performance ratings and calculate the average performance.
-Request Class: Represents a request with attributes like required_skills and urgency.
-HDAP Class: Manages a list of human resources and includes methods to add a human resource and match a request with the most suitable human resource.
+      - HumanResource Class: Represents an individual with attributes like name, skills, availability, and performance. It includes methods to add performance ratings and calculate the average performance.
+      - Request Class: Represents a request with attributes like required_skills and urgency.
+      - HDAP Class: Manages a list of human resources and includes methods to add a human resource and match a request with the most suitable human resource.
